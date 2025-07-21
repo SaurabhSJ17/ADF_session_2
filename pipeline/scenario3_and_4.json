@@ -1,5 +1,5 @@
 {
-	"name": "scenario3",
+	"name": "scenario3_and_4",
 	"properties": {
 		"activities": [
 			{
@@ -26,11 +26,100 @@
 							"type": "JsonReadSettings"
 						}
 					},
-					"enableStaging": false
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"validateDataConsistency": true,
+					"logSettings": {
+						"enableCopyActivityLog": true,
+						"copyActivityLogSettings": {
+							"logLevel": "Warning",
+							"enableReliableLogging": false
+						},
+						"logLocationSettings": {
+							"linkedServiceName": {
+								"referenceName": "AzureDataLakeStorage1",
+								"type": "LinkedServiceReference"
+							},
+							"path": "session2"
+						}
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['EmployeeID']"
+								},
+								"sink": {
+									"name": "EmployeeID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "$['details']['f_name']"
+								},
+								"sink": {
+									"name": "f_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['details']['l_name']"
+								},
+								"sink": {
+									"name": "l_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['details']['dept']"
+								},
+								"sink": {
+									"name": "dept",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['details']['salary']"
+								},
+								"sink": {
+									"name": "salary",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "$['details']['hire_date']"
+								},
+								"sink": {
+									"name": "hire_date",
+									"type": "Date"
+								}
+							}
+						],
+						"mapComplexValuesToString": true
+					}
 				},
 				"inputs": [
 					{
 						"referenceName": "Json_adls_source_ds",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "sql_sink",
 						"type": "DatasetReference"
 					}
 				]
