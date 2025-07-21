@@ -5,6 +5,9 @@
 			"referenceName": "AzureDataLakeStorage1",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "s3_4"
+		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
