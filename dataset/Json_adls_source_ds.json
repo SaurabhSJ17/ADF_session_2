@@ -1,0 +1,45 @@
+{
+	"name": "Json_adls_source_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "session2"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"EmployeeID": {
+					"type": "integer"
+				},
+				"details": {
+					"type": "object",
+					"properties": {
+						"f_name": {
+							"type": "string"
+						},
+						"l_name": {
+							"type": "string"
+						},
+						"dept": {
+							"type": "string"
+						},
+						"salary": {
+							"type": "number"
+						},
+						"hire_date": {
+							"type": "string"
+						}
+					}
+				}
+			}
+		}
+	}
+}
