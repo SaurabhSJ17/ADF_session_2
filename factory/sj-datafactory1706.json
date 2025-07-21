@@ -1,0 +1,9 @@
+{
+	"name": "sj-datafactory1706",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "b4132d07-56ec-4858-958d-26ba8bd2df00",
+		"tenantId": "a64338c1-895e-4052-a325-4f07792af1d5"
+	}
+}
